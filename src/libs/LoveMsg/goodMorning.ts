@@ -7,6 +7,8 @@ import { wxNotify } from '../WxNotify'
 import { textTemplate } from './templates/text'
 import { textCardTemplate } from './templates/textcard'
 
+const { CITY_NAME = '深圳' } = process.env
+
 // 美丽短句
 const goodWord = async() => {
   try {
@@ -48,7 +50,7 @@ const goodWord = async() => {
 
 // 天气信息
 const weatherInfo = async() => {
-  const weather = await API.getWeather('蚌埠')
+  const weather = await API.getWeather(CITY_NAME)
   if (weather) {
     const lunarInfo = await API.getLunarDate(weather.date)
     const oneWord = await API.getOneWord()
