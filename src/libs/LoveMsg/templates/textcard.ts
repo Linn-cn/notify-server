@@ -70,7 +70,7 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
 
   if (oneWord) {
     description += `
-『 ${oneWord.hitokoto} 』`
+『${oneWord.hitokoto}』`
   }
 
   // 内容末尾，自定义
