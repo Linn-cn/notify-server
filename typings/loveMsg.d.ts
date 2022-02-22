@@ -1,51 +1,3 @@
-// 定义天气返回值类型
-interface IWeatherResponseProps {
-  cityid: string
-  // 时间
-  date: string
-  // 星期几
-  week: string
-  update_time: string
-  city: string
-  cityEn: string
-  country: string
-  countryEn: string
-  wea: string
-  wea_img: string
-  // 当前温度
-  tem: string
-  // 最高温度
-  tem1: string
-  // 最低温度
-  tem2: string
-  win: string
-  win_speed: string
-  win_meter: string
-  // 湿度
-  humidity: string
-  visibility: string
-  pressure: string
-  // 空气质量
-  air: string
-  // pm
-  air_pm25: string
-  // 空气质量
-  air_level: string
-  // 活动建议
-  air_tips: string
-  alarm: IAlarmProps | null
-}
-
-// 预警信息
-interface IAlarmProps {
-  /** 暴雨 */
-  alarm_type: string
-  /** 橙色 */
-  alarm_level: string
-  /** 内容 */
-  alarm_content: string
-}
-
 interface IVerseProps {
   /** 长安白日照春空，绿杨结烟垂袅风。 */
   content: string
@@ -156,13 +108,106 @@ interface OneWordProps {
   creator: string
 }
 
+// 天行天气预报
+interface IWeatherResponseProps {
+  /**
+   * 地区
+   */
+  area: string
+  /**
+   * 日期
+   */
+  date: string
+  /**
+   * 星期
+   */
+  week: string
+  /**
+   * 早晚天气变化
+   */
+  weather: string
+  /**
+   * 天气图标
+   */
+  weatherimg: string
+  /**
+   * 实时天气
+   */
+  real: string
+  /**
+   * 最低温
+   */
+  lowest: string
+  /**
+   * 最高温
+   */
+  highest: string
+  /**
+   * 风向
+   */
+  wind: string
+  /**
+   * 风向360°角度
+   */
+  winddeg: string
+  /**
+   * 风速，km/h
+   */
+  windspeed: string
+  /**
+   * 风力
+   */
+  windsc: string
+  /**
+   * 日出时间
+   */
+  sunrise: string
+  /**
+   * 日落时间
+   */
+  sunset: string
+  /**
+   * 月升时间
+   */
+  moonrise: string
+  /**
+   * 月落时间
+   */
+  moondown: string
+  /**
+   * 降雨量
+   */
+  pcpn: string
+  /**
+   * 降雨概率
+   */
+  pop: string
+  /**
+   * 紫外线强度指数
+   */
+  uv_index: string
+  /**
+   * 能见度，单位：公里
+   */
+  vis: string
+  /**
+   * 相对湿度
+   */
+  humidity: string
+  /**
+   * 生活指数提示
+   */
+  tips: string
+}
+
 /**
  * 模板
  */
 // goodMorning
 type TextCardTemplateProps = IWeatherResponseProps & {
   lunarInfo: ResLunarDateProps
-  oneWord?: OneWordProps | null
+  oneLove?: OneWordProps | null
+  nextHoliday?: any
 }
 
 // goodEvening

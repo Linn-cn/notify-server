@@ -18,7 +18,7 @@ export const textTemplate = (data: TextTemplateProps) => {
   }
   else {
     text += `
-既然今天是${week}，就让你再睡会懒觉~下次可不能啦~😝\n`
+既然今天是${week}，就让你再睡会懒觉，下次可不能啦~😝\n`
   }
 
   // 彩虹屁
@@ -28,10 +28,10 @@ export const textTemplate = (data: TextTemplateProps) => {
   }
 
   // 土味情话
-  if (sayLove) {
-    text += `
-『土味情话』${sayLove.content}\n`
-  }
+  //   if (sayLove) {
+  //     text += `
+  // 『土味情话』${sayLove.content}\n`
+  //   }
 
   // 诗句
   //   if (songLyrics) {
@@ -44,10 +44,10 @@ export const textTemplate = (data: TextTemplateProps) => {
   // 『ONE杂志』${oneMagazines.word}\n`
   //   }
   //
-  //   if (netEaseCloud) {
-  //     text += `
-  // 『网易云音乐热评』${netEaseCloud.content}——${netEaseCloud.source}\n`
-  //   }
+  if (netEaseCloud) {
+    text += `
+『网易云音乐热评』${netEaseCloud.content}——${netEaseCloud.source}\n`
+  }
   //
   //   if (oneWord) {
   //     text += `

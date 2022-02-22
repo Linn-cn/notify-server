@@ -14,23 +14,29 @@ import dayjs from '../../../utils/dayjs'
 // 相识的日子
 const start_stamp = '2022-01-24'
 
+// const highlightText = (text: string) => {
+//   return `<div class='highlight'>${text}</div>`
+// }
+
 export const textCardTemplate = (data: TextCardTemplateProps) => {
   const {
-    city,
-    date,
-    wea,
-    tem,
-    tem1,
-    tem2,
-    win,
-    win_speed,
-    air,
-    air_level,
-    humidity,
-    alarm,
-    lunarInfo,
+    pcpn,
+    pop,
+    sunrise,
+    sunset,
+    real,
+    lowest,
+    highest,
+    windspeed,
+    weather,
+    windsc,
+    wind,
     week,
-    oneWord,
+    area,
+    date,
+    lunarInfo,
+    oneLove,
+    nextHoliday,
   } = data
 
   // 今日、恋爱天数
@@ -44,49 +50,41 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
   const jieqi_info = jieqi ? `| ${jieqi}` : ''
 
   // 拼接内容
-  let description = `${city} | ${today} | ${week} ${festival_info}
-农历 | ${lubarmonth}${lunarday} ${lunar_festival_info} ${jieqi_info}\n
-天气状况：
-🌈天气：${wea}
-🌀风向：${win}，等级：${win_speed}
-🌡温度：当前${tem}℃，范围 ${tem2}℃ ~ ${tem1}℃
-🔥空气PM：${air}，质量：${air_level}
-💧湿度：${humidity}\n`
+  let description = `${area} | ${today} | ${week} ${festival_info}
+农历 | ${lubarmonth}${lunarday} ${lunar_festival_info} ${jieqi_info} | 距离 ${nextHoliday.name} 还有 ${nextHoliday.rest} 天
 
-  // 添加预警天气
-  if (alarm) {
-    description += `
-预警信息：${alarm.alarm_type} | ${alarm.alarm_level}预警
-预警内容：${alarm.alarm_content}\n`
-  }
+天气：${weather}
+温度：${real}，范围：${lowest} ~ ${highest}
+日出-日落：${sunrise} - ${sunset}
+降雨概率：${pop}%，降雨量：${pcpn}mm
+风向：${wind}，等级：${windsc}，风速：${windspeed}km/h\n`
 
   // 最高温度
-  if (+tem1 <= 4) {
+  if (+highest.replace('℃', '') <= 5) {
     description += `
-哈喽哈喽，这里是专属你的爱心提醒哦：
-- 今日最高温度仅为🥶 ${tem1}℃，可冷可冷了！
+哈喽，这里是专属你的爱心提醒：
+- 今日最高温度仅为${highest}，🥶可冷可冷了！
 - 要注意保暖哦~\n`
   }
 
-  if (oneWord) {
+  if (oneLove) {
     description += `
-『${oneWord.hitokoto}』`
+『${oneLove}』`
   }
 
   // 内容末尾，自定义
   description += `
-『❤️ 🧡 💛 💚 💖』`
+『点开有惊喜』❤️ 🧡 💛 💚 💖`
 
-  const title = `这是我们相识的第 ${dateLength} 天💖`
+  // const title = `这是我们相识的第 ${dateLength} 天🧡`
+  const title = `这是我们相识的第 xx 天🧡`
 
   return {
     msgtype: 'textcard',
     textcard: {
       title,
       description,
-      // url: 'https://api.lovelive.tools/api/SweetNothings',
-      // url: 'https://v1.jinrishici.com/all.svg',
-      url: 'https://api.vvhan.com/api/60s', // 60s看世界
+      url: 'https://api.vvhan.com/api/moyu', // 摸鱼日历
       btntxt: 'By林',
     },
   }

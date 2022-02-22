@@ -16,7 +16,7 @@ const goodWord = async() => {
     const dataSource = await Promise.allSettled([
       API.getSaylove(), // 土味情话
       API.getCaihongpi(), // 彩虹屁
-      API.getOneWord(), // 一言
+      API.getOneLove(), // 一言
       API.getSongLyrics(), // 最美宋词
       API.getOneMagazines(), // one杂志
       API.getNetEaseCloud(), // 网易云热评
@@ -53,8 +53,9 @@ const weatherInfo = async() => {
   const weather = await API.getWeather(CITY_NAME)
   if (weather) {
     const lunarInfo = await API.getLunarDate(weather.date)
-    const oneWord = await API.getOneWord()
-    const template = textCardTemplate({ ...weather, lunarInfo, oneWord })
+    const oneLove = await API.getOneLove()
+    const nextHoliday = await API.nextHoliday()
+    const template = textCardTemplate({ ...weather, lunarInfo, oneLove, nextHoliday })
     console.log('weatherInfo', template)
 
     // 发送消息

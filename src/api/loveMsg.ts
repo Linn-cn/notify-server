@@ -6,7 +6,7 @@ import { getTian } from '../utils/http'
  */
 enum LoveMsgURL {
   // 天气
-  weather = 'https://www.yiketianqi.com/api?unescape=1&version=v6&appid=95616333&appsecret=xKcVmC5f',
+  weather = 'http://api.tianapi.com/tianqi/index',
   // 每日简报
   dailyBriefing = 'http://api.tianapi.com/bulletin/index',
   // 今日头条
@@ -31,8 +31,10 @@ enum LoveMsgURL {
   inspirationalWord = 'http://api.tianapi.com/lzmy/index',
   // 笑话
   joke = 'http://api.tianapi.com/joke/index',
-  // 一言
-  oneWord = 'https://v1.hitokoto.cn/?encode=json',
+  // 随机一句情话
+  oneLove = 'https://api.vvhan.com/api/love?type=json',
+  // 获取下一个假期和时间
+  nextHoliday = 'http://timor.tech/api/holiday/next/',
 }
 
 class API {
@@ -52,14 +54,9 @@ class API {
   // 天气
   async getWeather(city_name: string): Promise<IWeatherResponseProps | null> {
     try {
-      const response = await axios({ url: LoveMsgURL.weather, params: { city: city_name } })
-      const result = response.data
-      // 预警天气
-      if (!result.alarm.alarm_type && !result.alarm_content)
-        result.alarm = null
-
+      const response = await getTian({ url: LoveMsgURL.weather, params: { city: city_name } })
       console.log('天气请求成功==>', city_name)
-      return response.data
+      return response[0]
     }
     catch (error) {
       console.log('天气请求失败==>', error)
@@ -133,16 +130,26 @@ class API {
     return res
   }
 
-  // 一言
-  async getOneWord(): Promise<OneWordProps | null> {
+  // 随机一句情话
+  async getOneLove(): Promise<OneWordProps | null> {
     try {
-      const response = await axios(LoveMsgURL.oneWord, { timeout: 30000 })
-      return response.data
+      const response = await axios(LoveMsgURL.oneLove, { timeout: 30000 })
+      return response.data.ishan
     }
     catch (error) {
       console.log(error)
       return null
     }
+  }
+
+  /**
+   * 获取下一个假期和时间
+   * @returns {Promise<*>}
+   */
+  async nextHoliday(): Promise<OneWordProps | null> {
+    const res = await axios({ url: LoveMsgURL.nextHoliday })
+    console.log(`下一个假期和时间：${JSON.stringify(res.data.holiday)}`)
+    return res.data.holiday
   }
 }
 

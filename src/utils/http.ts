@@ -48,6 +48,11 @@ export function get<T = any>(config: AxiosRequestConfig, options?: AxiosRequestC
   return request({ ...config, method: 'GET' }, options)
 }
 
+/**
+ * 请求天行接口，自动传递key
+ * @param config
+ * @param options
+ */
 export function getTian<T = any>(
   config: AxiosRequestConfig,
   options?: AxiosRequestConfig,
@@ -65,5 +70,4 @@ export function post<T = any>(
   return request({ ...config, method: 'POST' }, options)
 }
 
-export default request
 export type { AxiosInstance, AxiosResponse }
