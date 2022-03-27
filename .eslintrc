@@ -1,6 +1,0 @@
-{
-  "extends": ["prettier","@antfu"],
-  "rules": {
-    "no-console": "warn"
-  }
-}

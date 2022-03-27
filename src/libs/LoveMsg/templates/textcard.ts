@@ -46,16 +46,16 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
   // 公历节日、农历节日和二十四节气
   const { festival, lunar_festival, jieqi, lubarmonth, lunarday } = lunarInfo
   const festival_info = festival ? `| ${festival}` : ''
-  const lunar_festival_info = lunar_festival ? `| ${lunar_festival}` : ''
-  const jieqi_info = jieqi ? `| ${jieqi}` : ''
+  const lunar_festival_info = lunar_festival ? ` | ${lunar_festival}` : ''
+  const jieqi_info = jieqi ? ` | ${jieqi}` : ''
 
   // 拼接内容
   let description = `${area} | ${today} | ${week} ${festival_info}
-农历 | ${lubarmonth}${lunarday} ${lunar_festival_info} ${jieqi_info} | 距离 ${nextHoliday.name} 还有 ${nextHoliday.rest} 天
+农历 | ${lubarmonth}${lunarday}${lunar_festival_info}${jieqi_info}| 离 ${nextHoliday.name} 还有 ${nextHoliday.rest} 天
 
 天气：${weather}
 温度：${real}，范围：${lowest} ~ ${highest}
-日出-日落：${sunrise} - ${sunset}
+日出日落：${sunrise} ~ ${sunset}
 降雨概率：${pop}%，降雨量：${pcpn}mm
 风向：${wind}，等级：${windsc}，风速：${windspeed}km/h\n`
 
